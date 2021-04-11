@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get '/restaurants', to: 'restaurants#index'
+  resources :restaurants
 
-  get '/new_restaurant', to: 'restaurants#new'
+  # get '/restaurants', to: 'restaurants#index'
 
-  post '/restaurant_list', to: 'restaurants#list'
+  # get '/new_restaurant', to: 'restaurants#new'
+
+  # post '/restaurant_list', to: 'restaurants#list'
 end

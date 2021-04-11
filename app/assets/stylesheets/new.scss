@@ -1,0 +1,24 @@
+form{
+  .field{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    width: 500px;
+
+    input[type=text], textarea{
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .field_with_errors  input{
+        border-color: red;
+    }
+  }
+  .submitBtn{
+    margin-top: 20px;
+    input{
+      padding: 10px 30px;
+      font-size: 1.1rem;
+    }
+  }
+}
+

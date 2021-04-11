@@ -1,0 +1,52 @@
+<%= form_for(restaurant) do |f| %>
+  <!--有錯誤的話會顯示錯誤訊息-->
+  <% if @restaurant.errors.any? %>
+  <ul>
+    <% @restaurant.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <!--有錯誤的話會顯示錯誤訊息-->
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="submitBtn">
+    <%= submit_tag :creat! %>
+  </div>
+<% end %>
+
+
+<!-- html寫法 可用上面rails的form_for小幫手改寫
+  <form action="./restaurant_list" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label>Title:   <input type="text" name="title" id=""></label>
+  <br>
+  <label>Address: <input type="text" name="address" id=""></label>
+  <br>
+  <label>Tel:     <input type="tel" name="tel" id=""></label>
+  <br>
+  <label>e-mail:  <input type="email" name="email" id=""></label>
+  <br>
+  Description:    <textarea type="text" name="description" id=""></textarea>
+  <br>
+  <input type="submit" value="creat!">
+</form> -->

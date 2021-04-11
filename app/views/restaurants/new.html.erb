@@ -1,16 +1,6 @@
 <h1>新增餐廳</h1>
+<br>
+<%= link_to '返回餐廳列表', restaurants_path %>
 
-<form action="./restaurant_list" method="POST">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label>Title:   <input type="text" name="title" id=""></label>
-  <br>
-  <label>Address: <input type="text" name="address" id=""></label>
-  <br>
-  <label>Tel:     <input type="tel" name="tel" id=""></label>
-  <br>
-  <label>e-mail:  <input type="email" name="email" id=""></label>
-  <br>
-  Description:    <textarea type="text" name="description" id=""></textarea>
-  <br>
-  <input type="submit" value="creat!">
-</form>
+<%= render 'form', restaurant: @restaurant%>
+
