@@ -47,6 +47,7 @@ class RestaurantsController < ApplicationController
 
 
   private
+  
   def find_restaurant
     @restaurant = Restaurant.find_by(id: params[:id])
   end
