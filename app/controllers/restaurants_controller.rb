@@ -4,7 +4,8 @@ class RestaurantsController < ApplicationController
   def index
     # render html: 'hello' #直接寫在這裡不好，通常寫在view裡
     #render({html: 'hello'}) #render方法,{html: 'hello'}是一個hash
-    @restaurants = Restaurant.all.order(id: :desc).where(deleted_at: nil)
+    # @restaurants = Restaurant.where(deleted_at: nil).all.order(id: :desc)
+    @restaurants = Restaurant.available.order(id: :desc) #available寫在model的scope
   end
 
   def show
@@ -40,9 +41,12 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    if @restaurant.update(deleted_at: Time.now)
-      redirect_to restaurants_path
-    end
+    # if @restaurant.update(deleted_at: Time.now) #將這段搬到model裡
+    # end
+    # 這段改寫成
+    @restaurant.delete
+    redirect_to restaurants_path
+
   end
 
 
