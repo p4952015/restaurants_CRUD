@@ -1,0 +1,25 @@
+form .field {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  width: 500px;
+}
+
+form .field input[type=text], form .field textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form .field .field_with_errors input {
+  border-color: red;
+}
+
+form .submitBtn {
+  margin-top: 20px;
+}
+
+form .submitBtn input {
+  padding: 10px 30px;
+  font-size: 1.1rem;
+}
+/*# sourceMappingURL=new.css.map */
