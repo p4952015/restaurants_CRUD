@@ -1,8 +1,8 @@
 <%= form_for(restaurant) do |f| %>
   <!--有錯誤的話會顯示錯誤訊息-->
-  <% if @restaurant.errors.any? %>
+  <% if restaurant.errors.any? %>
   <ul>
-    <% @restaurant.errors.full_messages.each do |message| %>
+    <% restaurant.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  helper_method :current_user, :user_signed_in #讓helper也可以用得到底下定義的current_user、user_signed_in方法
+  helper_method :current_user, :user_signed_in? #讓helper也可以用得到底下定義的current_user、user_signed_in方法
 
   private
   def not_found
@@ -21,9 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user
-    if not user_signed_in?
-      redirect_to root_path
-    end
+    redirect_to root_path if not user_signed_in?
   end
 
 end

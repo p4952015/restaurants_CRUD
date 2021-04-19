@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
-  before_action :find_restaurant, only: [:show, :edit, :update, :destroy] #在開始執行action前 先做find_restaruant
+  before_action :find_restaurant, only: [:edit, :update, :destroy] #在開始執行action前 先做find_restaruant
   before_action :check_user, except: [:index, :show]
-  
+
   def index
     # render html: 'hello' #直接寫在這裡不好，通常寫在view裡
     #render({html: 'hello'}) #render方法,{html: 'hello'}是一個hash
@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @restaurant = Restaurant.find_by(id: params[:id])
   end
 
   def new
@@ -18,7 +19,9 @@ class RestaurantsController < ApplicationController
 
   def create
     #寫入資料庫
-    @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant.user_id = current_user.id
+    @restaurant = current_user.restaurants.new(restaurant_params) #直接取代上面兩行
 
     if @restaurant.save
       redirect_to restaurants_path #導向頁面到這
@@ -42,15 +45,19 @@ class RestaurantsController < ApplicationController
     # if @restaurant.update(deleted_at: Time.now) #將這段搬到model裡
     # end
     # 這段改寫成
-    @restaurant.delete
+    @restaurant.destroy
     redirect_to restaurants_path
   end
 
-
   private
-
   def find_restaurant
-    @restaurant = Restaurant.find_by(id: params[:id])
+    # 寫法1
+    # @restaurant = Restaurant.find_by(
+    #   id: params[:id], 
+    #   user_id: current_user.id
+    # )
+    # 寫法2
+    @restaurant = current_user.restaurants.find_by(id: params[:id])
   end
   
   def restaurant_params
