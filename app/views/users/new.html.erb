@@ -1,0 +1,32 @@
+<h1>註冊頁面</h1>
+
+<%= form_for(@user) do |form|%>
+
+  <!--有錯誤的話會顯示錯誤訊息-->
+  <% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <!--有錯誤的話會顯示錯誤訊息-->
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  
+  <%= form.submit%>
+
+<% end %>

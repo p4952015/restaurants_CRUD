@@ -1,21 +1,19 @@
 class RestaurantsController < ApplicationController
   before_action :find_restaurant, only: [:show, :edit, :update, :destroy] #在開始執行action前 先做find_restaruant
-
+  before_action :check_user, except: [:index, :show]
+  
   def index
     # render html: 'hello' #直接寫在這裡不好，通常寫在view裡
     #render({html: 'hello'}) #render方法,{html: 'hello'}是一個hash
     # @restaurants = Restaurant.where(deleted_at: nil).all.order(id: :desc)
-    @restaurants = Restaurant.available.order(id: :desc) #available寫在model的scope
+    @restaurants = Restaurant.all #available寫在model的scope
   end
 
   def show
-      @restaurant = Restaurant.find(params[:id])
-      @restaurant = Restaurant.find(params[:title])
-  
   end
 
   def new
-     @restaurant = Restaurant.new
+      @restaurant = Restaurant.new
   end
 
   def create
@@ -46,7 +44,6 @@ class RestaurantsController < ApplicationController
     # 這段改寫成
     @restaurant.delete
     redirect_to restaurants_path
-
   end
 
 
@@ -55,7 +52,9 @@ class RestaurantsController < ApplicationController
   def find_restaurant
     @restaurant = Restaurant.find_by(id: params[:id])
   end
+  
   def restaurant_params
     params.require(:restaurant).permit(:title, :tel, :email, :address, :description) #過濾寫進資料庫的資料
   end
+
 end
