@@ -12,10 +12,15 @@ Rails.application.routes.draw do
       get :sign_in, action: 'new'
       post :sign_in, action: 'create'
       delete :sign_out, action: 'destroy'
+
     end
   end
 
-  resources :restaurants
+  resources :restaurants do
+    resources :comments, shallow: true, only: [:create, :destroy] #取代20.23這兩行
+    # resources :comments, only: [:create, :destroy]
+  end
+  # resources :comments, except: [:create, :destroy] 
   root "restaurants#index"
 
 

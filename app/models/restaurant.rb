@@ -25,5 +25,6 @@ class Restaurant < ApplicationRecord
 
   validates :title, presence: true
   belongs_to :user #opptional預設是fales 欄位不能為空
+  has_many :comments
 end
 

@@ -20,6 +20,7 @@ class User < ApplicationRecord
   before_create :encrypt_password
 
   has_many :restaurants #幫建出attr_reader.attr_writter
+  has_many :comments
 
   def self.login(params)
     email = params[:email]
